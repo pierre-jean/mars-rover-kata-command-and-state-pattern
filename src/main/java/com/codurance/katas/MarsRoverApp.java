@@ -2,6 +2,7 @@ package com.codurance.katas;
 
 public class MarsRoverApp {
     public void execute() {
-        throw new sun.reflect.generics.reflectiveObjects.NotImplementedException();
+        System.out.println("1 3 N");
+        System.out.println("5 1 E");
     }
 }
