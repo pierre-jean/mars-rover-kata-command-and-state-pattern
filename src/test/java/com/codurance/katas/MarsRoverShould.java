@@ -39,6 +39,10 @@ public class MarsRoverShould {
                new Object[]{
                        createInputFor("5 5", "1 1 N", "M"),
                        createOutputFor("1 2 N")
+               },
+               new Object[]{
+                       createInputFor("5 5", "1 1 N", "MM"),
+                       createOutputFor("1 3 N")
                }
        };
     }
