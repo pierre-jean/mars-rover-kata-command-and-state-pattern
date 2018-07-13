@@ -16,13 +16,6 @@ import static org.mockito.Mockito.verify;
 @RunWith(JUnitParamsRunner.class)
 public class MarsRoverShould {
 
-    public static final String INPUT = String.join("\r",
-            "5 5",
-            "1 2 N",
-            "LMLMLMLMM",
-            "3 3 E",
-            "MMRMMRMRRM");
-
     @Test
     @Parameters(method = "getScenarios")
     public void return_the_right_output(String input, List<String> output) {
@@ -34,10 +27,10 @@ public class MarsRoverShould {
         MarsRoverApp app = new MarsRoverApp();
         app.execute();
 
-        output.stream().forEach( line -> verify( outputStream).println(line));
+        output.forEach(line -> verify( outputStream).println(line));
     }
 
-    Object[][] getScenarios(){
+    public Object[][] getScenarios(){
        return new Object[][]{
                new Object[]{
                        createInputFor("5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"),
