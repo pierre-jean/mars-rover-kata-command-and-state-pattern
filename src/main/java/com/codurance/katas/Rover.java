@@ -1,8 +1,10 @@
 package com.codurance.katas;
 
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @EqualsAndHashCode
+@ToString
 public class Rover {
     private int x;
     private int y;
@@ -10,16 +12,28 @@ public class Rover {
     private Grid grid;
 
 
-    Rover(Grid grid, int x, int y, Direction direction) {
+    public Rover(Grid grid, int x, int y, Direction direction) {
         this.grid = grid;
-        this.setX(x);
-        this.setY(y);
-        this.setDirection(direction);
+        this.x = x;
+        this.y = y;
+        this.direction = direction;
+    }
+
+    public void moveForward(){
+       direction.moveForward(this);
     }
 
 
+    public void turnRight() {
+        this.direction = direction.right();
+    }
+
+    public void turnLeft() {
+        this.direction = direction.left();
+    }
+
     public String printSituation() {
-        return String.format("%d %d %s", getX(), getY(), getDirection().toCommand());
+        return String.format("%d %d %s", getX(), getY(), direction.toCommand());
     }
 
     public int getX() {
@@ -38,15 +52,8 @@ public class Rover {
         this.y = y;
     }
 
-    public Direction getDirection() {
-        return direction;
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
-    }
-
     public Grid getGrid() {
         return grid;
     }
+
 }

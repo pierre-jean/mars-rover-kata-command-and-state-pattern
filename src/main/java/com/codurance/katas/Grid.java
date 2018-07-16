@@ -1,11 +1,16 @@
 package com.codurance.katas;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@ToString
+@EqualsAndHashCode
 public class Grid {
     private final int gridXSize;
     private final int gridYSize;
 
 
-    Grid(int xTopRightCorner, int yTopRightCorner) {
+    public Grid(int xTopRightCorner, int yTopRightCorner) {
         this.gridXSize = xTopRightCorner + 1;
         this.gridYSize = yTopRightCorner + 1;
     }

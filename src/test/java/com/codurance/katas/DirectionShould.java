@@ -1,5 +1,6 @@
 package com.codurance.katas;
 
+import com.codurance.katas.directions.*;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
@@ -15,9 +16,8 @@ public class DirectionShould {
     @Test
     @Parameters(method = "getExpectedLeftDirection")
     public void turn_left(Direction startDirection, Direction expectedFinalDirection) {
-        Direction direction = startDirection;
 
-        Direction newDirection = direction.newDirection(Command.TURN_LEFT);
+        Direction newDirection = startDirection.left();
 
         assertThat(newDirection, is(equalTo(expectedFinalDirection)));
     }
@@ -25,28 +25,40 @@ public class DirectionShould {
     @Test
     @Parameters(method = "getExpectedRightDirection")
     public void turn_right(Direction startDirection, Direction expectedFinalDirection) {
-        Direction direction = startDirection;
 
-        Direction newDirection = direction.newDirection(Command.TURN_RIGHT);
+        Direction newDirection = startDirection.right();
 
         assertThat(newDirection, is(equalTo(expectedFinalDirection)));
     }
 
+    @Test
+    public void stopped_at_obstacle() {
+        Direction blockedDirection = new BlockedDirection();
+
+        Rover rover = new Rover(new Grid(5,5), 1,1, blockedDirection);
+        blockedDirection.moveForward(rover);
+
+        assertThat(blockedDirection.left(), is(equalTo(new BlockedDirection())));
+        assertThat(blockedDirection.right(), is(equalTo(new BlockedDirection())));
+        assertThat(rover, is(equalTo(new Rover(new Grid(5,5), 1,1, blockedDirection))));
+
+    }
+
     public Object[][] getExpectedLeftDirection(){
         return new Object[][]{
-                new Object[]{Direction.NORTH, Direction.WEST},
-                new Object[]{Direction.WEST, Direction.SOUTH},
-                new Object[]{Direction.SOUTH, Direction.EAST},
-                new Object[]{Direction.EAST, Direction.NORTH}
+                new Object[]{new NorthDirection(), new WestDirection()},
+                new Object[]{new WestDirection(), new SouthDirection()},
+                new Object[]{new SouthDirection(), new EastDirection()},
+                new Object[]{new EastDirection(), new NorthDirection()}
         };
     }
 
     public Object[][] getExpectedRightDirection(){
         return new Object[][]{
-                new Object[]{Direction.NORTH, Direction.EAST},
-                new Object[]{Direction.EAST, Direction.SOUTH},
-                new Object[]{Direction.SOUTH, Direction.WEST},
-                new Object[]{Direction.WEST, Direction.NORTH}
+                new Object[]{new NorthDirection(), new EastDirection()},
+                new Object[]{new EastDirection(), new SouthDirection()},
+                new Object[]{new SouthDirection(), new WestDirection()},
+                new Object[]{new WestDirection(), new NorthDirection()}
         };
 
     }
