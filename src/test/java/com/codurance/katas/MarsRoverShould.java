@@ -27,32 +27,40 @@ public class MarsRoverShould {
         MarsRoverApp app = new MarsRoverApp();
         app.execute();
 
-        output.forEach(line -> verify( outputStream).println(line));
+        output.forEach(line -> verify(outputStream).println(line));
     }
 
-    public Object[][] getScenarios(){
-       return new Object[][]{
-               new Object[]{
-                       createInputFor("5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"),
-                       createOutputFor("1 3 N", "5 1 E")
-               },
-               new Object[]{
-                       createInputFor("5 5", "1 1 N", "M"),
-                       createOutputFor("1 2 N")
-               },
-               new Object[]{
-                       createInputFor("5 5", "1 1 N", "MM"),
-                       createOutputFor("1 3 N")
-               }
-       };
+    public Object[][] getScenarios() {
+        return new Object[][]{
+                new Object[]{
+                        createInputFor("5 5", "1 2 N", "LMLMLMLMM"),
+                        createOutputFor("1 3 N")
+                },
+                new Object[]{
+                        createInputFor("5 5", "1 1 N", "M"),
+                        createOutputFor("1 2 N")
+                },
+                new Object[]{
+                        createInputFor("5 5", "1 1 N", "MM"),
+                        createOutputFor("1 3 N")
+                },
+                new Object[]{
+                        createInputFor("5 5","1 1 N", "LLMM"),
+                        createOutputFor("1 5 S")
+                },
+                new Object[]{
+                        createInputFor("5 5", "1 5 N", "M"),
+                        createOutputFor("1 0 N")
+                }
+        };
     }
 
 
-    private Object createOutputFor(String... results){
+    private Object createOutputFor(String... results) {
         return Arrays.asList(results);
     }
 
-    private Object createInputFor(String... commands){
+    private Object createInputFor(String... commands) {
         return String.join("\r", commands);
     }
 }
