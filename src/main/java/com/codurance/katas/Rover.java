@@ -1,9 +1,10 @@
 package com.codurance.katas;
 
-import lombok.EqualsAndHashCode;
+import com.codurance.katas.directions.BlockedDirection;
 import lombok.ToString;
 
-@EqualsAndHashCode
+import java.util.Objects;
+
 @ToString
 public class Rover {
     private int x;
@@ -33,6 +34,9 @@ public class Rover {
     }
 
     public String printSituation() {
+        if (direction.equals(new BlockedDirection())){
+            return "";
+        }
         return String.format("%d %d %s", getX(), getY(), direction.toCommand());
     }
 
@@ -56,4 +60,24 @@ public class Rover {
         return grid;
     }
 
+    public void block(int blockedX, int blockedY) {
+        System.out.println(String.format("O %d %d %s", blockedX, blockedY, direction.toCommand()));
+        this.direction = new BlockedDirection();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rover rover = (Rover) o;
+        return x == rover.x &&
+                y == rover.y &&
+                Objects.equals(direction, rover.direction);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(x, y, direction);
+    }
 }

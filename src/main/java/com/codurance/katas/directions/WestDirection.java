@@ -23,7 +23,11 @@ public class WestDirection implements Direction {
     @Override
     public void moveForward(Rover rover) {
         int newX = rover.getGrid().getX(rover.getX() -1);
-        rover.setX(newX);
+        if (rover.getGrid().isBlocked(newX, rover.getY())){
+            rover.block(newX, rover.getY());
+        } else{
+            rover.setX(newX);
+        }
     }
 
     @Override

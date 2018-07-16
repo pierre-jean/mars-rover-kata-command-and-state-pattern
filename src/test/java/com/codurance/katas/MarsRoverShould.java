@@ -51,6 +51,14 @@ public class MarsRoverShould {
                 new Object[]{
                         createInputFor("5 5", "1 5 N", "M"),
                         createOutputFor("1 0 N")
+                },
+                new Object[]{
+                        createInputFor("5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"),
+                        createOutputFor("1 3 N", "5 1 E")
+                },
+                new Object[]{
+                        createInputFor("5 5","1 1 N", "LLLL", "1 0 N", "MMMM"),
+                        createOutputFor("1 1 N", "O 1 1 N")
                 }
         };
     }

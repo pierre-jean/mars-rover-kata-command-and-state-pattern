@@ -10,9 +10,15 @@ public class MarsRoverApp {
     public void execute() {
         Scanner scanner = new Scanner(System.in);
         Grid grid = Console.parseGrid(scanner.nextLine());
-        Rover rover = Console.parseRover(scanner.nextLine(), grid);
-        List<Command> commandList = Console.parseCommands(scanner.nextLine(), rover);
+        while(scanner.hasNextLine()){
+            executeRoverCommands(scanner, grid);
+        }
+    }
 
+    private void executeRoverCommands(Scanner scanner, Grid grid) {
+        Rover rover = Console.parseRover(scanner.nextLine(), grid);
+        grid.addRover(rover);
+        List<Command> commandList = Console.parseCommands(scanner.nextLine(), rover);
         commandList.forEach(Command::execute);
 
         System.out.println(rover.printSituation());

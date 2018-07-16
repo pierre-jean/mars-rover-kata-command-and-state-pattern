@@ -5,8 +5,8 @@ import com.codurance.katas.Rover;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-@ToString
 @EqualsAndHashCode
+@ToString
 public class BlockedDirection implements Direction {
     private final String command = "O";
 
