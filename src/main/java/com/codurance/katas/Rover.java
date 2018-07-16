@@ -12,34 +12,41 @@ public class Rover {
 
     Rover(Grid grid, int x, int y, Direction direction) {
         this.grid = grid;
-        this.x = x;
-        this.y = y;
-        this.direction = direction;
-    }
-
-    public void apply(Command command){
-        direction = direction.newDirection(command);
-        if (command.equals(Command.MOVE_FORWARD)){
-            switch (direction){
-                case NORTH:
-                    y = grid.getY(y+1);
-                    break;
-                case WEST:
-                    x = grid.getX( x-1);
-                    break;
-                case EAST:
-                    x = grid.getX(x+1);
-                    break;
-                case SOUTH:
-                    y = grid.getY(y-1);
-                    break;
-            }
-        }
+        this.setX(x);
+        this.setY(y);
+        this.setDirection(direction);
     }
 
 
     public String printSituation() {
-        return String.format("%d %d %s", x, y, direction.toCommand());
+        return String.format("%d %d %s", getX(), getY(), getDirection().toCommand());
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    public Grid getGrid() {
+        return grid;
+    }
 }

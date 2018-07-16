@@ -35,7 +35,7 @@ public class RoverTest {
     @Parameters(method = "getCommands")
     public void should_apply_command(List<Command> commands, String expectedSituation) {
         Rover rover = new Rover(grid, 1, 1, Direction.NORTH);
-        commands.stream().forEach(rover::apply);
+        commands.stream().forEach(command -> command.applyCommandOn(rover.getDirection(), rover, rover.getGrid()));
         assertThat(rover.printSituation(), is(equalTo(expectedSituation)));
     }
 

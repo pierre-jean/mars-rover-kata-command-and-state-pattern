@@ -23,7 +23,7 @@ public class MarsRoverApp {
         Grid grid = buildGridFrom(gridSize);
         Rover rover = buildRoverFrom(roverPosition, grid);
         List<Command> commands = buildCommandFrom(roverCommands);
-        commands.stream().forEach( c -> rover.apply(c));
+        commands.stream().forEach(c -> c.applyCommandOn(rover.getDirection(), rover, rover.getGrid()));
         System.out.println(rover.printSituation());
         return event;
     }
