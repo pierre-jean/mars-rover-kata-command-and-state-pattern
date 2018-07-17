@@ -1,4 +1,4 @@
-package com.codurance.katas.map;
+package com.codurance.katas.marsrover.map;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

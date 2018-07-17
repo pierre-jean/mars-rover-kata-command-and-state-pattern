@@ -1,6 +1,6 @@
-package com.codurance.katas;
+package com.codurance.katas.marsrover;
 
-import com.codurance.katas.controller.ConsoleController;
+import com.codurance.katas.marsrover.controller.ConsoleController;
 
 public class App {
 

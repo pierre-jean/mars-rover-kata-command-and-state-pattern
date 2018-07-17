@@ -1,28 +1,27 @@
-package com.codurance.katas.map.directions;
+package com.codurance.katas.marsrover.map.directions;
 
-import com.codurance.katas.Direction;
-import com.codurance.katas.Rover;
+import com.codurance.katas.marsrover.Direction;
+import com.codurance.katas.marsrover.Rover;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @EqualsAndHashCode
 @ToString
-public class WestDirection implements Direction {
-    private final String command = "W";
+public class BlockedDirection implements Direction {
+    private final String command = "O";
 
     @Override
     public Direction left() {
-        return new SouthDirection();
+        return this;
     }
 
     @Override
     public Direction right() {
-        return new NorthDirection();
+        return this;
     }
 
     @Override
     public void moveForward(Rover rover) {
-        rover.moveWest();
     }
 
     @Override

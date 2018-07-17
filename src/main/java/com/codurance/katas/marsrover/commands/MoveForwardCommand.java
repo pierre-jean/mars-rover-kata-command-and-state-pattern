@@ -1,7 +1,7 @@
-package com.codurance.katas.commands;
+package com.codurance.katas.marsrover.commands;
 
-import com.codurance.katas.Command;
-import com.codurance.katas.Rover;
+import com.codurance.katas.marsrover.Command;
+import com.codurance.katas.marsrover.Rover;
 
 public class MoveForwardCommand implements Command {
     private final Rover rover;

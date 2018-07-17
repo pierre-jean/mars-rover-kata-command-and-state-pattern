@@ -1,6 +1,6 @@
-package com.codurance.katas;
+package com.codurance.katas.marsrover;
 
-import com.codurance.katas.map.Position;
+import com.codurance.katas.marsrover.map.Position;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;

@@ -1,7 +1,7 @@
-package com.codurance.katas.controller;
+package com.codurance.katas.marsrover.controller;
 
-import com.codurance.katas.Command;
-import com.codurance.katas.Rover;
+import com.codurance.katas.marsrover.Command;
+import com.codurance.katas.marsrover.Rover;
 
 import java.io.InputStream;
 import java.util.List;

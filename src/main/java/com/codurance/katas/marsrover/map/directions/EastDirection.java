@@ -1,7 +1,7 @@
-package com.codurance.katas.map.directions;
+package com.codurance.katas.marsrover.map.directions;
 
-import com.codurance.katas.Direction;
-import com.codurance.katas.Rover;
+import com.codurance.katas.marsrover.Direction;
+import com.codurance.katas.marsrover.Rover;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 

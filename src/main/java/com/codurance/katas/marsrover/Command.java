@@ -1,4 +1,4 @@
-package com.codurance.katas;
+package com.codurance.katas.marsrover;
 
 public interface Command {
 

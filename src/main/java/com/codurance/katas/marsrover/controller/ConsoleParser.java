@@ -1,17 +1,17 @@
-package com.codurance.katas.controller;
+package com.codurance.katas.marsrover.controller;
 
-import com.codurance.katas.Command;
-import com.codurance.katas.Direction;
-import com.codurance.katas.Rover;
-import com.codurance.katas.commands.MoveForwardCommand;
-import com.codurance.katas.commands.TurnLeftCommand;
-import com.codurance.katas.commands.TurnRightCommand;
-import com.codurance.katas.map.Coordinates;
-import com.codurance.katas.map.Position;
-import com.codurance.katas.map.directions.EastDirection;
-import com.codurance.katas.map.directions.NorthDirection;
-import com.codurance.katas.map.directions.SouthDirection;
-import com.codurance.katas.map.directions.WestDirection;
+import com.codurance.katas.marsrover.Command;
+import com.codurance.katas.marsrover.Direction;
+import com.codurance.katas.marsrover.Rover;
+import com.codurance.katas.marsrover.commands.MoveForwardCommand;
+import com.codurance.katas.marsrover.commands.TurnLeftCommand;
+import com.codurance.katas.marsrover.commands.TurnRightCommand;
+import com.codurance.katas.marsrover.map.Coordinates;
+import com.codurance.katas.marsrover.map.Position;
+import com.codurance.katas.marsrover.map.directions.EastDirection;
+import com.codurance.katas.marsrover.map.directions.NorthDirection;
+import com.codurance.katas.marsrover.map.directions.SouthDirection;
+import com.codurance.katas.marsrover.map.directions.WestDirection;
 
 import java.util.*;
 import java.util.stream.Collectors;
