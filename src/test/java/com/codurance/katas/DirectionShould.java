@@ -1,6 +1,6 @@
 package com.codurance.katas;
 
-import com.codurance.katas.directions.*;
+import com.codurance.katas.map.directions.*;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
@@ -8,7 +8,8 @@ import org.junit.runner.RunWith;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.*;
 
 @RunWith(JUnitParamsRunner.class)
 public class DirectionShould {
@@ -34,13 +35,16 @@ public class DirectionShould {
     @Test
     public void stopped_at_obstacle() {
         Direction blockedDirection = new BlockedDirection();
+        Rover rover = mock(Rover.class);
 
-        Rover rover = new Rover(new Grid(5,5), 1,1, blockedDirection);
         blockedDirection.moveForward(rover);
 
+        verify(rover, never()).moveEast();
+        verify(rover, never()).moveWest();
+        verify(rover, never()).moveSouth();
+        verify(rover, never()).moveNorth();
         assertThat(blockedDirection.left(), is(equalTo(new BlockedDirection())));
         assertThat(blockedDirection.right(), is(equalTo(new BlockedDirection())));
-        assertThat(rover, is(equalTo(new Rover(new Grid(5,5), 1,1, blockedDirection))));
 
     }
 

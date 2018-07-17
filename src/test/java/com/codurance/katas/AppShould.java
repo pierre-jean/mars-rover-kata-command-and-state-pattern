@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
@@ -14,17 +15,17 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @RunWith(JUnitParamsRunner.class)
-public class MarsRoverShould {
+public class AppShould {
 
     @Test
     @Parameters(method = "getScenarios")
     public void return_the_right_output(String input, List<String> output) {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         PrintStream outputStream = mock(PrintStream.class);
         System.setIn(inputStream);
         System.setOut(outputStream);
+        App app = new App();
 
-        MarsRoverApp app = new MarsRoverApp();
         app.execute();
 
         output.forEach(line -> verify(outputStream).println(line));
@@ -46,11 +47,11 @@ public class MarsRoverShould {
                 },
                 new Object[]{
                         createInputFor("5 5","1 1 N", "LLMM"),
-                        createOutputFor("1 5 S")
+                        createOutputFor("1 4 S")
                 },
                 new Object[]{
                         createInputFor("5 5", "1 5 N", "M"),
-                        createOutputFor("1 0 N")
+                        createOutputFor("1 1 N")
                 },
                 new Object[]{
                         createInputFor("5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"),

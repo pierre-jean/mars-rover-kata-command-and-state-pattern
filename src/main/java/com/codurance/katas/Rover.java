@@ -1,29 +1,33 @@
 package com.codurance.katas;
 
-import com.codurance.katas.directions.BlockedDirection;
+import com.codurance.katas.map.directions.BlockedDirection;
+import com.codurance.katas.map.Coordinates;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.util.Objects;
+import java.util.Collections;
+import java.util.Set;
 
 @ToString
+@EqualsAndHashCode
 public class Rover {
-    private int x;
-    private int y;
+    @EqualsAndHashCode.Exclude private final Set<Rover> roversDeployed;
+    private Coordinates coordinates;
     private Direction direction;
-    private Grid grid;
 
+    public Rover(Coordinates coordinates, Direction direction) {
+        this(coordinates, direction, Collections.emptySet());
+    }
 
-    public Rover(Grid grid, int x, int y, Direction direction) {
-        this.grid = grid;
-        this.x = x;
-        this.y = y;
+    public Rover(Coordinates coordinates, Direction direction, Set<Rover> roversDeployed) {
+        this.roversDeployed = roversDeployed;
+        this.coordinates = coordinates;
         this.direction = direction;
     }
 
-    public void moveForward(){
-       direction.moveForward(this);
+    public void moveForward() {
+        direction.moveForward(this);
     }
-
 
     public void turnRight() {
         this.direction = direction.right();
@@ -33,51 +37,43 @@ public class Rover {
         this.direction = direction.left();
     }
 
-    public String printSituation() {
-        if (direction.equals(new BlockedDirection())){
-            return "";
+    public void moveNorth() {
+        validate(coordinates.getNorth());
+    }
+
+    public void moveEast() {
+        validate(coordinates.getEast());
+    }
+
+    public void moveSouth() {
+        validate(coordinates.getSouth());
+    }
+
+    public void moveWest() {
+        validate(coordinates.getWest());
+    }
+
+    public void printSituation() {
+        if (!direction.equals(new BlockedDirection())) {
+            System.out.println(String.format("%s %s", coordinates.toCommand(), direction.toCommand()));
         }
-        return String.format("%d %d %s", getX(), getY(), direction.toCommand());
     }
 
-    public int getX() {
-        return x;
+    private void validate(Coordinates newPosition) {
+        if (isLocationOccupiedAt(newPosition)) {
+            block(newPosition);
+        } else {
+            this.coordinates = newPosition;
+        }
     }
 
-    public void setX(int x) {
-        this.x = x;
+    private boolean isLocationOccupiedAt(Coordinates coordinates) {
+        return roversDeployed.stream().anyMatch(r -> r.coordinates.equals(coordinates));
     }
 
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public Grid getGrid() {
-        return grid;
-    }
-
-    public void block(int blockedX, int blockedY) {
-        System.out.println(String.format("O %d %d %s", blockedX, blockedY, direction.toCommand()));
+    private void block(Coordinates coordinates) {
+        System.out.println(String.format("O %s %s", coordinates.toCommand(), direction.toCommand()));
         this.direction = new BlockedDirection();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Rover rover = (Rover) o;
-        return x == rover.x &&
-                y == rover.y &&
-                Objects.equals(direction, rover.direction);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(x, y, direction);
-    }
 }

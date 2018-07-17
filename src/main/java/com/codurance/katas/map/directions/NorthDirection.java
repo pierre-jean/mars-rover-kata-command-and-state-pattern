@@ -1,8 +1,7 @@
-package com.codurance.katas.directions;
+package com.codurance.katas.map.directions;
 
-import com.codurance.katas.Grid;
-import com.codurance.katas.Rover;
 import com.codurance.katas.Direction;
+import com.codurance.katas.Rover;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -23,13 +22,7 @@ public class NorthDirection implements Direction {
 
     @Override
     public void moveForward(Rover rover) {
-        Grid grid = rover.getGrid();
-        int newY = rover.getGrid().getY(rover.getY() + 1);
-        if(grid.isBlocked(rover.getX(), newY)){
-            rover.block(rover.getX(), newY);
-        }else{
-            rover.setY(newY);
-        }
+        rover.moveNorth();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.codurance.katas.directions;
+package com.codurance.katas.map.directions;
 
 import com.codurance.katas.Direction;
 import com.codurance.katas.Rover;
