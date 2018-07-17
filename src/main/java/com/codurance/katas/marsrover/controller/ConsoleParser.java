@@ -62,7 +62,7 @@ public class ConsoleParser {
             case "R":
                 return new TurnRightCommand(rover);
         }
-        return null;
+        throw new UnsupportedOperationException(String.format("%s is not recognized as a command", command));
     }
 
     private Position parseMapCorner(String line) {
@@ -95,6 +95,6 @@ public class ConsoleParser {
         if ("W".equals(directionCommand)) {
             return new WestDirection();
         }
-        return null;
+        throw new UnsupportedOperationException(String.format("%s is not recognized as a Direction", directionCommand));
     }
 }
