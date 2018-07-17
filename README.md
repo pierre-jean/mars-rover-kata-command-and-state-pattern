@@ -30,8 +30,8 @@ Each rover will be finished sequentially, which means that the second rover won'
 
 The output for each rover should be its final co-ordinates and heading.
 
-INPUT AND OUTPUT:
-----------------
+Examples of Input and Output
+----------------------------
 
 ### Test Input:
 5 5
