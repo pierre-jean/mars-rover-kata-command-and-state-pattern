@@ -1,6 +1,5 @@
 package com.codurance.katas.marsrover;
 
-import com.codurance.katas.marsrover.App;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;

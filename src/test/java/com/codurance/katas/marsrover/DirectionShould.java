@@ -1,8 +1,6 @@
 package com.codurance.katas.marsrover;
 
 import com.codurance.katas.marsrover.map.directions.*;
-import com.codurance.katas.marsrover.Direction;
-import com.codurance.katas.marsrover.Rover;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;

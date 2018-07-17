@@ -1,12 +1,11 @@
 package com.codurance.katas.marsrover;
 
+import com.codurance.katas.marsrover.map.Coordinates;
+import com.codurance.katas.marsrover.map.Position;
 import com.codurance.katas.marsrover.map.directions.EastDirection;
 import com.codurance.katas.marsrover.map.directions.NorthDirection;
 import com.codurance.katas.marsrover.map.directions.SouthDirection;
 import com.codurance.katas.marsrover.map.directions.WestDirection;
-import com.codurance.katas.marsrover.map.Coordinates;
-import com.codurance.katas.marsrover.map.Position;
-import com.codurance.katas.marsrover.Rover;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Before;
