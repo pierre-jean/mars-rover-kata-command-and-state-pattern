@@ -1,7 +1,7 @@
 package com.codurance.katas;
 
-import com.codurance.katas.map.directions.BlockedDirection;
 import com.codurance.katas.map.Coordinates;
+import com.codurance.katas.map.directions.BlockedDirection;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -11,7 +11,8 @@ import java.util.Set;
 @ToString
 @EqualsAndHashCode
 public class Rover {
-    @EqualsAndHashCode.Exclude private final Set<Rover> roversDeployed;
+    @EqualsAndHashCode.Exclude
+    private final Set<Rover> roversDeployed;
     private Coordinates coordinates;
     private Direction direction;
 
@@ -62,9 +63,8 @@ public class Rover {
     private void validate(Coordinates newPosition) {
         if (isLocationOccupiedAt(newPosition)) {
             block(newPosition);
-        } else {
-            this.coordinates = newPosition;
         }
+        this.coordinates = newPosition;
     }
 
     private boolean isLocationOccupiedAt(Coordinates coordinates) {
