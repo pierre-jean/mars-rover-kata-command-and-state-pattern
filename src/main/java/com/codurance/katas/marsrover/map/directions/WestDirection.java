@@ -29,4 +29,5 @@ public class WestDirection implements Direction {
     public String toCommand() {
         return command;
     }
+
 }

@@ -1,5 +1,7 @@
 package com.codurance.katas.marsrover;
 
+import com.codurance.katas.marsrover.map.Coordinates;
+import com.codurance.katas.marsrover.map.Position;
 import com.codurance.katas.marsrover.map.directions.*;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -34,7 +36,9 @@ public class DirectionShould {
 
     @Test
     public void stopped_at_obstacle() {
-        Direction blockedDirection = new BlockedDirection();
+        Direction direction = new NorthDirection();
+        Coordinates obstacleCoordinates = new Coordinates(new Position(2,2), new Position(5,5));
+        Direction blockedDirection = new BlockedDirection(direction, obstacleCoordinates);
         Rover rover = mock(Rover.class);
 
         blockedDirection.moveForward(rover);
@@ -43,8 +47,8 @@ public class DirectionShould {
         verify(rover, never()).moveWest();
         verify(rover, never()).moveSouth();
         verify(rover, never()).moveNorth();
-        assertThat(blockedDirection.left(), is(equalTo(new BlockedDirection())));
-        assertThat(blockedDirection.right(), is(equalTo(new BlockedDirection())));
+        assertThat(blockedDirection.left(), is(equalTo(new BlockedDirection(direction, obstacleCoordinates))));
+        assertThat(blockedDirection.right(), is(equalTo(new BlockedDirection(direction, obstacleCoordinates))));
 
     }
 

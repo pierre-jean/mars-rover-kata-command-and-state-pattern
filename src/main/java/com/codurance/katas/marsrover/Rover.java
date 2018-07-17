@@ -55,9 +55,7 @@ public class Rover {
     }
 
     public void printSituation() {
-        if (!direction.equals(new BlockedDirection())) {
-            System.out.println(String.format("%s %s", coordinates.toCommand(), direction.toCommand()));
-        }
+        direction.printSituationAt(coordinates);
     }
 
     private Coordinates validate(Coordinates newCoordinates) {
@@ -72,9 +70,8 @@ public class Rover {
         return roversDeployed.stream().anyMatch(r -> r.coordinates.equals(coordinates));
     }
 
-    private void blockAt(Coordinates coordinates) {
-        System.out.println(String.format("O %s %s", coordinates.toCommand(), direction.toCommand()));
-        this.direction = new BlockedDirection();
+    private void blockAt(Coordinates obstacleCoordinates) {
+        this.direction = new BlockedDirection(direction, obstacleCoordinates);
     }
 
 }

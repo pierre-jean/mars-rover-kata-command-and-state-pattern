@@ -58,6 +58,15 @@ public class AppShould {
                         createOutputFor("1 3 N", "5 1 E")
                 },
                 new Object[]{
+                        createInputFor("10 10", "1 1 S", "MRM"),
+                        createOutputFor("10 10 W")
+
+                },
+                new Object[]{
+                        createInputFor("2 1", "1 1 E", "MMM"),
+                        createOutputFor("2 1 E")
+                },
+                new Object[]{
                         createInputFor("5 5","1 1 N", "LLLL", "1 0 N", "MMMM"),
                         createOutputFor("1 1 N", "O 1 1 N")
                 }

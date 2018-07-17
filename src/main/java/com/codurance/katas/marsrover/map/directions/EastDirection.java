@@ -29,4 +29,5 @@ public class EastDirection implements Direction {
     public String toCommand() {
         return command;
     }
+
 }
