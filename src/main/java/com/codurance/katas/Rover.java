@@ -39,19 +39,19 @@ public class Rover {
     }
 
     public void moveNorth() {
-        validate(coordinates.getNorth());
+        this.coordinates = validate(coordinates.getNorth());
     }
 
     public void moveEast() {
-        validate(coordinates.getEast());
+        this.coordinates = validate(coordinates.getEast());
     }
 
     public void moveSouth() {
-        validate(coordinates.getSouth());
+        this.coordinates = validate(coordinates.getSouth());
     }
 
     public void moveWest() {
-        validate(coordinates.getWest());
+        this.coordinates = validate(coordinates.getWest());
     }
 
     public void printSituation() {
@@ -60,18 +60,19 @@ public class Rover {
         }
     }
 
-    private void validate(Coordinates newPosition) {
-        if (isLocationOccupiedAt(newPosition)) {
-            block(newPosition);
+    private Coordinates validate(Coordinates newCoordinates) {
+        if (isLocationOccupiedAt(newCoordinates)) {
+            blockAt(newCoordinates);
+            return coordinates;
         }
-        this.coordinates = newPosition;
+        return newCoordinates;
     }
 
     private boolean isLocationOccupiedAt(Coordinates coordinates) {
         return roversDeployed.stream().anyMatch(r -> r.coordinates.equals(coordinates));
     }
 
-    private void block(Coordinates coordinates) {
+    private void blockAt(Coordinates coordinates) {
         System.out.println(String.format("O %s %s", coordinates.toCommand(), direction.toCommand()));
         this.direction = new BlockedDirection();
     }
