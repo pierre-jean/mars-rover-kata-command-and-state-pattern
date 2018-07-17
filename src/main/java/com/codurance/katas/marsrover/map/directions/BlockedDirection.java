@@ -39,6 +39,6 @@ public class BlockedDirection implements Direction {
 
     @Override
     public void printSituationAt(Coordinates coordinates) {
-        System.out.println(String.format("%s %s %s", command, this.obstacleCoordinates.toCommand(), previousDirection.toCommand()));
+        System.out.println(String.format("%s %s %s",toCommand(), this.obstacleCoordinates.toCommand(), previousDirection.toCommand()));
     }
 }

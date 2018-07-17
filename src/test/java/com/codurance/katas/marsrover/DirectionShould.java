@@ -16,6 +16,10 @@ import static org.mockito.Mockito.*;
 @RunWith(JUnitParamsRunner.class)
 public class DirectionShould {
 
+    private final Direction directionBeforeBlock = new NorthDirection();
+    private final Coordinates obstacleCoordinates = new Coordinates(new Position(2,2), new Position(5,5));
+    private final Direction blockedDirection = new BlockedDirection(directionBeforeBlock, obstacleCoordinates);
+
     @Test
     @Parameters(method = "getExpectedLeftDirection")
     public void turn_left(Direction startDirection, Direction expectedFinalDirection) {
@@ -36,9 +40,6 @@ public class DirectionShould {
 
     @Test
     public void stopped_at_obstacle() {
-        Direction direction = new NorthDirection();
-        Coordinates obstacleCoordinates = new Coordinates(new Position(2,2), new Position(5,5));
-        Direction blockedDirection = new BlockedDirection(direction, obstacleCoordinates);
         Rover rover = mock(Rover.class);
 
         blockedDirection.moveForward(rover);
@@ -47,9 +48,6 @@ public class DirectionShould {
         verify(rover, never()).moveWest();
         verify(rover, never()).moveSouth();
         verify(rover, never()).moveNorth();
-        assertThat(blockedDirection.left(), is(equalTo(new BlockedDirection(direction, obstacleCoordinates))));
-        assertThat(blockedDirection.right(), is(equalTo(new BlockedDirection(direction, obstacleCoordinates))));
-
     }
 
     public Object[][] getExpectedLeftDirection(){
@@ -57,7 +55,8 @@ public class DirectionShould {
                 new Object[]{new NorthDirection(), new WestDirection()},
                 new Object[]{new WestDirection(), new SouthDirection()},
                 new Object[]{new SouthDirection(), new EastDirection()},
-                new Object[]{new EastDirection(), new NorthDirection()}
+                new Object[]{new EastDirection(), new NorthDirection()},
+                new Object[]{blockedDirection, blockedDirection}
         };
     }
 
@@ -66,7 +65,8 @@ public class DirectionShould {
                 new Object[]{new NorthDirection(), new EastDirection()},
                 new Object[]{new EastDirection(), new SouthDirection()},
                 new Object[]{new SouthDirection(), new WestDirection()},
-                new Object[]{new WestDirection(), new NorthDirection()}
+                new Object[]{new WestDirection(), new NorthDirection()},
+                new Object[]{blockedDirection, blockedDirection}
         };
 
     }
